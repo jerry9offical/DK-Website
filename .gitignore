@@ -33,8 +33,17 @@ yarn-error.log*
 # env files (can opt-in for committing if needed)
 .env*
 
+# prisma generated client
+/src/generated/prisma
+
 # vercel
 .vercel
+
+# editor/agent tooling
+.claude/
+
+# original uploaded image backups (not part of the build)
+/_assets_staging
 
 # typescript
 *.tsbuildinfo

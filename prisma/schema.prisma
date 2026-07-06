@@ -1,0 +1,33 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Lead {
+  id           String    @id @default(cuid())
+  name         String?
+  email        String?
+  phone        String?
+  organisation String?
+  service      String?
+  eventDate    DateTime?
+  budget       String?
+  message      String?
+  source       String
+  sessionId    String?
+  createdAt    DateTime  @default(now())
+}
+
+model ChatMessage {
+  id        String   @id @default(cuid())
+  sessionId String
+  role      String
+  content   String
+  createdAt DateTime @default(now())
+
+  @@index([sessionId])
+}

@@ -1,26 +1,96 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #06090f;
+  --foreground: #f7f5f0;
+
+  --color-ink: #06090f;
+  --color-navy: #0b1424;
+  --color-navy-light: #141f35;
+  --color-navy-soft: #1b2740;
+
+  --color-gold: #d4af37;
+  --color-gold-light: #f1da9a;
+  --color-gold-dark: #9c7a1f;
+
+  --color-crimson: #c8233a;
+  --color-crimson-dark: #8c1626;
+
+  --color-cream: #f7f5f0;
+  --color-cream-dim: #c9c6bd;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-ink: var(--color-ink);
+  --color-navy: var(--color-navy);
+  --color-navy-light: var(--color-navy-light);
+  --color-navy-soft: var(--color-navy-soft);
+
+  --color-gold: var(--color-gold);
+  --color-gold-light: var(--color-gold-light);
+  --color-gold-dark: var(--color-gold-dark);
+
+  --color-crimson: var(--color-crimson);
+  --color-crimson-dark: var(--color-crimson-dark);
+
+  --color-cream: var(--color-cream);
+  --color-cream-dim: var(--color-cream-dim);
+
+  --font-display: var(--font-playfair);
+  --font-sans: var(--font-inter);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+* {
+  border-color: rgb(247 245 240 / 0.08);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-ink);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-gold-dark);
+  border-radius: 9999px;
+}
+
+::selection {
+  background: var(--color-gold);
+  color: var(--color-ink);
+}
+
+@keyframes marquee-ltr {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes icon-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.25);
+  }
+}
+
+.animate-marquee-ltr {
+  animation: marquee-ltr 26s linear infinite;
+}
+
+.animate-marquee-ltr:hover {
+  animation-play-state: paused;
 }
