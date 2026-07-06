@@ -88,7 +88,7 @@ export function Contact() {
               <span className="flex h-10 w-10 items-center justify-center rounded-full border border-gold/30">
                 <WhatsAppIcon className="h-4 w-4 text-gold" />
               </span>
-              WhatsApp / Phone — {CONTACT_DETAILS.phoneDisplay}
+              Chat with Dorcas on WhatsApp
             </a>
             <div className="flex items-center gap-3 text-sm text-cream-dim">
               <span className="flex h-10 w-10 items-center justify-center rounded-full border border-gold/30">
