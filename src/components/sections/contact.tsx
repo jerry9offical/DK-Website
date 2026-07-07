@@ -6,6 +6,7 @@ import { MapPin, Globe } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { Eyebrow } from "@/components/ui/eyebrow";
 import { Button } from "@/components/ui/button";
+import { Select } from "@/components/ui/select";
 import { WhatsAppIcon } from "@/components/ui/brand-icons";
 import { fadeUp, staggerContainer } from "@/lib/motion";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
@@ -19,9 +20,17 @@ const LABEL_CLASS =
 
 export function Contact() {
   const [sent, setSent] = useState(false);
+  const [service, setService] = useState("");
+  const [serviceError, setServiceError] = useState(false);
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+
+    if (!service) {
+      setServiceError(true);
+      return;
+    }
+
     const data = new FormData(e.currentTarget);
 
     const fields = {
@@ -29,7 +38,7 @@ export function Contact() {
       organisation: String(data.get("organisation") || ""),
       email: String(data.get("email") || ""),
       phone: String(data.get("phone") || ""),
-      service: String(data.get("service") || ""),
+      service,
       date: String(data.get("date") || ""),
       budget: String(data.get("budget") || ""),
       message: String(data.get("message") || ""),
@@ -164,25 +173,21 @@ export function Contact() {
               />
             </motion.div>
             <motion.div variants={fadeUp}>
-              <label htmlFor="service" className={LABEL_CLASS}>
-                Service Needed
-              </label>
-              <select
-                id="service"
+              <label className={LABEL_CLASS}>Service Needed</label>
+              <Select
                 name="service"
-                required
-                className={FIELD_CLASS}
-                defaultValue=""
-              >
-                <option value="" disabled>
-                  Select a service
-                </option>
-                {SERVICE_OPTIONS.map((service) => (
-                  <option key={service} value={service}>
-                    {service}
-                  </option>
-                ))}
-              </select>
+                value={service}
+                onChange={(value) => {
+                  setService(value);
+                  setServiceError(false);
+                }}
+                options={SERVICE_OPTIONS}
+                placeholder="Select a service"
+                error={serviceError}
+              />
+              {serviceError && (
+                <p className="mt-1.5 text-xs text-crimson">Please select a service.</p>
+              )}
             </motion.div>
             <motion.div variants={fadeUp}>
               <label htmlFor="date" className={LABEL_CLASS}>
